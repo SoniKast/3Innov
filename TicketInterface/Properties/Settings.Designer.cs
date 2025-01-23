@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Solution3Balla.Properties
+namespace TicketInterface.Properties
 {
 
 

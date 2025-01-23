@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{8246216D-56C2-4DC9-BC74-794A6BA1E4C8}</ProjectGuid>
+    <ProjectGuid>{581BAB7B-4D58-4AEF-BBC1-F7E10D00CDE4}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>Solution3Balla</RootNamespace>
-    <AssemblyName>Solution3Balla</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <RootNamespace>TicketInterface</RootNamespace>
+    <AssemblyName>TicketInterface</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
@@ -48,11 +48,20 @@
     <Reference Include="K4os.Hash.xxHash, Version=1.0.8.0, Culture=neutral, PublicKeyToken=32cd54395057cec3, processorArchitecture=MSIL">
       <HintPath>..\packages\K4os.Hash.xxHash.1.0.8\lib\net462\K4os.Hash.xxHash.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.5.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.8.0.0\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
-    <Reference Include="MySql.Data, Version=9.1.0.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
-      <HintPath>..\packages\MySql.Data.9.1.0\lib\net462\MySql.Data.dll</HintPath>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=8.0.0.2, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.8.0.2\lib\net462\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=8.0.0.2, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.Abstractions.8.0.2\lib\net462\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data, Version=9.2.0.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.9.2.0\lib\net48\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="MySqlConnector, Version=2.0.0.0, Culture=neutral, PublicKeyToken=d33d3e53aa5f8c92, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySqlConnector.2.4.0\lib\net48\MySqlConnector.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
@@ -98,16 +107,65 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="Equipement\EquipementCreation.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
+    <Compile Include="Equipement\EquipementCreation.Designer.cs">
+      <DependentUpon>EquipementCreation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Connexion\Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Connexion\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Connexion\Inscription.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Connexion\Inscription.Designer.cs">
+      <DependentUpon>Inscription.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InterfacePrincipale.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InterfacePrincipale.Designer.cs">
+      <DependentUpon>InterfacePrincipale.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
+    <Compile Include="Connexion\SessionManager.cs" />
+    <Compile Include="Ticket\TicketCreation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ticket\TicketCreation.Designer.cs">
+      <DependentUpon>TicketCreation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ticket\VoirTicket.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ticket\VoirTicket.Designer.cs">
+      <DependentUpon>VoirTicket.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Equipement\VoirEquipement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Equipement\VoirEquipement.Designer.cs">
+      <DependentUpon>VoirEquipement.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Equipement\EquipementCreation.resx">
+      <DependentUpon>EquipementCreation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Connexion\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Connexion\Inscription.resx">
+      <DependentUpon>Inscription.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Equipement\VoirEquipement.resx">
+      <DependentUpon>VoirEquipement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InterfacePrincipale.resx">
+      <DependentUpon>InterfacePrincipale.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -118,6 +176,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Ticket\TicketCreation.resx">
+      <DependentUpon>TicketCreation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ticket\VoirTicket.resx">
+      <DependentUpon>VoirTicket.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

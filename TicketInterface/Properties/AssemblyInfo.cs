@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // Les informations générales relatives à un assembly dépendent de
 // l'ensemble d'attributs suivant. Changez les valeurs de ces attributs pour modifier les informations
 // associées à un assembly.
-[assembly: AssemblyTitle("Solution3Balla")]
+[assembly: AssemblyTitle("TicketInterface")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Solution3Balla")]
+[assembly: AssemblyProduct("TicketInterface")]
 [assembly: AssemblyCopyright("Copyright ©  2025")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // Le GUID suivant est pour l'ID de la typelib si ce projet est exposé à COM
-[assembly: Guid("8246216d-56c2-4dc9-bc74-794a6ba1e4c8")]
+[assembly: Guid("581bab7b-4d58-4aef-bbc1-f7e10d00cde4")]
 
 // Les informations de version pour un assembly se composent des quatre valeurs suivantes :
 //
