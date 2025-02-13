@@ -1,0 +1,6 @@
+@AdminInterface.Server_HostAddress = http://localhost:5237
+
+GET {{AdminInterface.Server_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
