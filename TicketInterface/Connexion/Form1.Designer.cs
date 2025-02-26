@@ -40,9 +40,10 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(137, 260);
+            this.button1.Location = new System.Drawing.Point(183, 320);
+            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(133, 33);
+            this.button1.Size = new System.Drawing.Size(177, 41);
             this.button1.TabIndex = 4;
             this.button1.Text = "Connexion";
             this.button1.UseVisualStyleBackColor = true;
@@ -50,18 +51,20 @@
             // 
             // emailTextbox
             // 
-            this.emailTextbox.Location = new System.Drawing.Point(97, 132);
+            this.emailTextbox.Location = new System.Drawing.Point(129, 162);
+            this.emailTextbox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.emailTextbox.Name = "emailTextbox";
-            this.emailTextbox.Size = new System.Drawing.Size(214, 20);
+            this.emailTextbox.Size = new System.Drawing.Size(284, 22);
             this.emailTextbox.TabIndex = 0;
             this.emailTextbox.TextChanged += new System.EventHandler(this.emailTextbox_TextChanged);
             // 
             // EmailLabel
             // 
             this.EmailLabel.AutoSize = true;
-            this.EmailLabel.Location = new System.Drawing.Point(94, 116);
+            this.EmailLabel.Location = new System.Drawing.Point(125, 143);
+            this.EmailLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.EmailLabel.Name = "EmailLabel";
-            this.EmailLabel.Size = new System.Drawing.Size(32, 13);
+            this.EmailLabel.Size = new System.Drawing.Size(41, 16);
             this.EmailLabel.TabIndex = 2;
             this.EmailLabel.Text = "Email";
             this.EmailLabel.Click += new System.EventHandler(this.EmailLabel_Click);
@@ -69,17 +72,19 @@
             // MdpLabel
             // 
             this.MdpLabel.AutoSize = true;
-            this.MdpLabel.Location = new System.Drawing.Point(94, 175);
+            this.MdpLabel.Location = new System.Drawing.Point(125, 215);
+            this.MdpLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.MdpLabel.Name = "MdpLabel";
-            this.MdpLabel.Size = new System.Drawing.Size(71, 13);
+            this.MdpLabel.Size = new System.Drawing.Size(89, 16);
             this.MdpLabel.TabIndex = 4;
             this.MdpLabel.Text = "Mot de passe";
             // 
             // MdpTextbox
             // 
-            this.MdpTextbox.Location = new System.Drawing.Point(97, 191);
+            this.MdpTextbox.Location = new System.Drawing.Point(129, 235);
+            this.MdpTextbox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MdpTextbox.Name = "MdpTextbox";
-            this.MdpTextbox.Size = new System.Drawing.Size(214, 20);
+            this.MdpTextbox.Size = new System.Drawing.Size(284, 22);
             this.MdpTextbox.TabIndex = 2;
             this.MdpTextbox.UseSystemPasswordChar = true;
             this.MdpTextbox.TextChanged += new System.EventHandler(this.MdpTextbox_TextChanged);
@@ -87,13 +92,14 @@
             // MdpOublie
             // 
             this.MdpOublie.AutoSize = true;
-            this.MdpOublie.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.MdpOublie.BackColor = System.Drawing.SystemColors.Control;
             this.MdpOublie.Cursor = System.Windows.Forms.Cursors.Hand;
             this.MdpOublie.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MdpOublie.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.MdpOublie.Location = new System.Drawing.Point(97, 214);
+            this.MdpOublie.Location = new System.Drawing.Point(129, 263);
+            this.MdpOublie.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.MdpOublie.Name = "MdpOublie";
-            this.MdpOublie.Size = new System.Drawing.Size(111, 13);
+            this.MdpOublie.Size = new System.Drawing.Size(147, 17);
             this.MdpOublie.TabIndex = 3;
             this.MdpOublie.Text = "Mot de passe oublié ?";
             this.MdpOublie.Click += new System.EventHandler(this.MdpOublie_Click);
@@ -101,13 +107,14 @@
             // Inscription
             // 
             this.Inscription.AutoSize = true;
-            this.Inscription.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.Inscription.BackColor = System.Drawing.SystemColors.Control;
             this.Inscription.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Inscription.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Inscription.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.Inscription.Location = new System.Drawing.Point(97, 155);
+            this.Inscription.Location = new System.Drawing.Point(129, 191);
+            this.Inscription.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Inscription.Name = "Inscription";
-            this.Inscription.Size = new System.Drawing.Size(87, 13);
+            this.Inscription.Size = new System.Drawing.Size(114, 17);
             this.Inscription.TabIndex = 1;
             this.Inscription.Text = "Pas de compte ?";
             this.Inscription.Click += new System.EventHandler(this.Inscription_Click);
@@ -116,9 +123,10 @@
             // 
             this.Titre.AutoSize = true;
             this.Titre.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Titre.Location = new System.Drawing.Point(60, 43);
+            this.Titre.Location = new System.Drawing.Point(80, 53);
+            this.Titre.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Titre.Name = "Titre";
-            this.Titre.Size = new System.Drawing.Size(295, 31);
+            this.Titre.Size = new System.Drawing.Size(370, 39);
             this.Titre.TabIndex = 7;
             this.Titre.Text = "Bienvenue sur Gestiam";
             this.Titre.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -126,10 +134,10 @@
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.ClientSize = new System.Drawing.Size(409, 356);
+            this.BackColor = System.Drawing.SystemColors.Control;
+            this.ClientSize = new System.Drawing.Size(545, 438);
             this.Controls.Add(this.Titre);
             this.Controls.Add(this.Inscription);
             this.Controls.Add(this.MdpOublie);
@@ -139,6 +147,7 @@
             this.Controls.Add(this.emailTextbox);
             this.Controls.Add(this.button1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Form1";
             this.Text = "Ticket Box";
             this.ResumeLayout(false);

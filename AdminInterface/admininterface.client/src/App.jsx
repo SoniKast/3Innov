@@ -1,51 +1,46 @@
 import { useEffect, useState } from 'react';
-import './App.css';
+import { Routes, Route } from 'react-router-dom';
+import Header from './components/Header';
+import Footer from './components/Footer';
+import Home from './pages/Home';
+import Monitoring from './pages/Monitoring.jsx';
+import Tickets from './pages/Tickets.jsx';
+import Register from './pages/Register.jsx';
+import Login from './pages/Login.jsx';
+import Dashboard from './pages/Dashboard.jsx';
 
-function App() {
-    const [forecasts, setForecasts] = useState();
+const App = () => {
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
 
     useEffect(() => {
-        populateWeatherData();
+        // Check if the user is authenticated (e.g., by checking if a token exists in localStorage)
+        const token = localStorage.getItem('token');
+        if (token) {
+            setIsAuthenticated(true);
+        }
     }, []);
 
-    const contents = forecasts === undefined
-        ? <p><em>Loading... Please refresh once the ASP.NET backend has started. See <a href="https://aka.ms/jspsintegrationreact">https://aka.ms/jspsintegrationreact</a> for more details.</em></p>
-        : <table className="table table-striped" aria-labelledby="tableLabel">
-            <thead>
-                <tr>
-                    <th>Date</th>
-                    <th>Temp. (C)</th>
-                    <th>Temp. (F)</th>
-                    <th>Summary</th>
-                </tr>
-            </thead>
-            <tbody>
-                {forecasts.map(forecast =>
-                    <tr key={forecast.date}>
-                        <td>{forecast.date}</td>
-                        <td>{forecast.temperatureC}</td>
-                        <td>{forecast.temperatureF}</td>
-                        <td>{forecast.summary}</td>
-                    </tr>
-                )}
-            </tbody>
-        </table>;
+    const handleLogout = () => {
+        localStorage.removeItem('token');
+        setIsAuthenticated(false);
+    };
 
     return (
-        <div>
-            <h1 id="tableLabel">Weather forecast</h1>
-            <p>This component demonstrates fetching data from the server.</p>
-            {contents}
+        <div className="app-container">
+            <Header isAuthenticated={isAuthenticated} onLogout={handleLogout} />
+            <div className="content">
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/monitoring" element={<Monitoring />} />
+                    <Route path="/tickets" element={<Tickets />} />
+                    <Route path="/dashboard" element={<Dashboard />} />
+                    <Route path="/register" element={<Register />} />
+                    <Route path="/login" element={<Login />} />
+                </Routes>
+            </div>
+            <Footer />
         </div>
     );
-    
-    async function populateWeatherData() {
-        const response = await fetch('weatherforecast');
-        if (response.ok) {
-            const data = await response.json();
-            setForecasts(data);
-        }
-    }
-}
+};
 
 export default App;
