@@ -1,6 +1,8 @@
-function Home() {
+const Home = () => {
   return (
-    <p>Hello world!</p>
+      <div>
+          <>Hello world!</ h1>
+      </div>
   );
 }
 
