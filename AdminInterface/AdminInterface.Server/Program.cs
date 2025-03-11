@@ -9,18 +9,20 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-app.UseDefaultFiles();
+app.UseRouting();
+
 app.UseStaticFiles();
+app.UseDefaultFiles();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
+    app.UseDeveloperExceptionPage();
     app.UseSwagger();
     app.UseSwaggerUI();
 }
 
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
 
 app.MapControllers();
