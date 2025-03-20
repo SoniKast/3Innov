@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
 import Footer from './components/Footer';
@@ -11,11 +11,17 @@ import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 
 const App = () => {
+    const location = useLocation();
+
+    const hideSidebar = ["/login"];
+    const showSidebar = !hideSidebar.includes(location.pathname); // Afficher le sidebar partout sauf
+    // la page de connexion
+
     return (
         <div className="app-container">
             <Header />
             <div className="d-flex">
-                <Sidebar />
+                {showSidebar && < Sidebar />}
                 <div className="content p-3">
                     <Routes>
                         <Route path="/" element={<Home />} />

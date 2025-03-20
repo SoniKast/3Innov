@@ -1,16 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
+import DropdownMenu from './DropdownMenu';
 import "../App.css";
 
 const Sidebar = () => {
-    // State to track dropdown visibility
-    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-
-    // Function to toggle dropdown
-    const toggleDropdown = () => {
-        setIsDropdownOpen(!isDropdownOpen);
-    };
-
+    
     return (
         <aside className="bg-danger vh-100" style={{ width: '250px' }}>
             <ul className="nav flex-column">
@@ -18,27 +12,27 @@ const Sidebar = () => {
                     <Link to="/" className="bg-light text-center nav-link link-secondary">Accueil</Link>
                 </li>
                 <li className="nav-item">
-                    <div
-                        className="bg-light text-center nav-link link-secondary dropdown-btn pe-auto"
-                        onClick={toggleDropdown}
-                    >
-                        Assistance
-                    </div>
-                    <div
-                        className="dropdown-container"
-                        style={{ display: isDropdownOpen ? "block" : "none" }}>
-                        <ul>
-                            <li><Link to="#">Link 1</Link></li>
-                            <li><Link to="#">Link 2</Link></li>
-                            <li><Link to="#">Link 3</Link></li>
-                        </ul>
-                    </div>
+                    <DropdownMenu
+                        title="Assistance"
+                        links={[
+                            { label: "Créer un ticket", path: "/create-ticket" },
+                            { label: "Tickets", path: "/tickets" },
+                            { label: "Monitoring", path: "/monitoring" }
+                        ]}
+                    />
                 </li>
                 <li className="nav-item">
-                    <Link to="/dashboard" className="bg-light text-center nav-link link-secondary">Administration</Link>
+                    <DropdownMenu
+                        title="Administration"
+                        links={[
+                            { label: "Gérer utilisateurs", path: "/users" },
+                            { label: "Statistiques", path: "/stats" },
+                            { label: "Paramètres avancés", path: "/advanced-settings" }
+                        ]}
+                    />
                 </li>
                 <li className="nav-item">
-                    <Link to="/settings" className="bg-light text-center nav-link link-secondary">Settings</Link>
+                    <Link to="/settings" className="bg-light text-center nav-link link-secondary">Paramètres</Link>
                 </li>
                 <li className="nav-item">
                     <Link to="/logout" className="bg-light text-center nav-link link-secondary">Déconnexion</Link>
