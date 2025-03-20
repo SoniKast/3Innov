@@ -1,6 +1,6 @@
 function Footer() {
   return (
-    <p>Hello world!</p>
+    <div>Hello world!</div>
   );
 }
 
