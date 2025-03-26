@@ -24,3 +24,19 @@
 .dropdown-btn:hover {
     cursor: pointer;
 }
+
+.app-container {
+    background-color: #c5c2c2;
+}
+
+.main-page {
+    padding: 20px;
+    background-color: #d9d9d9;
+    border-radius: 12px;
+}
+
+
+.login-form {
+    margin-inline: auto;
+    padding: 20px;
+}

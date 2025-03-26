@@ -1,7 +1,9 @@
 import React from 'react';
 function Dashboard() {
   return (
-    <p>Hello world!</p>
+      <div className="main-page">
+          <p>Hello world!</p>
+      </div>
   );
 }
 

@@ -2,7 +2,6 @@ import React from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
-import Footer from './components/Footer';
 import Home from './pages/Home';
 import Monitoring from './pages/Monitoring';
 import Tickets from './pages/Tickets';
@@ -22,7 +21,7 @@ const App = () => {
             <Header />
             <div className="d-flex">
                 {showSidebar && < Sidebar />}
-                <div className="content p-3">
+                <div className="container p-3 justify-content-center">
                     <Routes>
                         <Route path="/" element={<Home />} />
                         <Route path="/monitoring" element={<Monitoring />} />
@@ -33,7 +32,6 @@ const App = () => {
                     </Routes>
                 </div>
             </div>
-            <Footer />
         </div>
     );
 };

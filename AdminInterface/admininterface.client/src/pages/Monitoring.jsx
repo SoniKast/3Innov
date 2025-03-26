@@ -1,7 +1,9 @@
 import React from 'react';
 function Monitoring() {
-  return (
-    <p>Monitoring!</p>
+    return (
+        <div className="main-page">
+            <p>Monitoring!</p>
+        </div>
   );
 }
 
