@@ -18,7 +18,7 @@ const Login = () => {
             });
 
             const data = await response.json();
-            console.log("Réponse du serveur:", data); // 🔥 Affichage dans la console
+            console.log("Réponse du serveur:", data);
 
             if (!response.ok) {
                 setError(data.message || "Email ou mot de passe invalide");
