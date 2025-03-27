@@ -22,7 +22,7 @@ namespace AdminInterface.Server.Models
         public string Commentaire { get; set; }
         [Required]
         public string Adresse_IP { get; set; }
-
+        
         public GroupeMonitoring Groupe { get; set; }
         public List<Incident> Incidents { get; set; } = new();
     }

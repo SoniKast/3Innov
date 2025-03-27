@@ -17,18 +17,57 @@ namespace AdminInterface.Server.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Equipement>>> GetEquipements()
+        public async Task<ActionResult<IEnumerable<object>>> GetEquipements()
         {
-            return await _context.Equipement.Include(e => e.Groupe).ToListAsync();
+            var equipements = await _context.Equipement
+            .Include(e => e.Groupe)
+            .Select(e => new
+            {
+                e.ID_Equipement,
+                e.Type_equipement,
+                e.Description_equipement,
+                e.Marque,
+                e.Modele,
+                e.Commentaire,
+                e.Adresse_IP,
+                Groupe = e.Groupe != null ? new
+                {
+                    e.Groupe.ID_Groupe,
+                    e.Groupe.Nom_GroupeM
+                } : null
+            })
+            .ToListAsync();
+
+            return Ok(equipements);
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<Equipement>> GetEquipement(int id)
         {
-            var equipement = await _context.Equipement.Include(e => e.Groupe).FirstOrDefaultAsync(e => e.ID_Equipement == id);
+            var equipement = await _context.Equipement
+            .Include(e => e.Groupe)
+            .Where(e => e.ID_Equipement == id)
+            .Select(e => new
+            {
+                e.ID_Equipement,
+                e.Type_equipement,
+                e.Description_equipement,
+                e.Marque,
+                e.Modele,
+                e.Commentaire,
+                e.Adresse_IP,
+                Groupe = e.Groupe != null ? new
+                {
+                    e.Groupe.ID_Groupe,
+                    e.Groupe.Nom_GroupeM, 
+                } : null
+            })
+            .FirstOrDefaultAsync();
+
             if (equipement == null)
                 return NotFound();
-            return equipement;
+
+            return Ok(equipement);
         }
 
         [HttpPost]

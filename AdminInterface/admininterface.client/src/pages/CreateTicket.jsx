@@ -64,10 +64,10 @@ function CreateTicket() {
                     </div>
 
                     <div className="form-group mt-3">
-                        <label htmlFor="ticketPriority">Type</label>
+                        <label htmlFor="ticketType">Type</label>
                         <select
                             className="form-control"
-                            id="ticketPriority"
+                            id="ticketType"
                             value={type}
                             onChange={(e) => setType(e.target.value)}
                         >
