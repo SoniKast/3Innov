@@ -62,17 +62,7 @@ function Tickets() {
                         <th scope="col">ID</th>
                         <th scope="col">Titre</th>
                         <th scope="col">Description</th>
-                        <th scope="col">Statut
-                            <div class="btn-group">
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                    <li><hr class="dropdown-divider"></hr></li>
-                                    <li><a class="dropdown-item" href="#">Separated link</a></li>
-                                </ul>
-                            </div>
-                        </th>
+                        <th scope="col">Statut</th>
                         <th scope="col">Utilisateur</th>
                     </tr>
                 </thead>

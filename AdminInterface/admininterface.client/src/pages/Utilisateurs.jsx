@@ -45,6 +45,7 @@ function Utilisateurs() {
                         <th scope="col">Name</th>
                         <th scope="col">Email</th>
                         <th scope="col">Tickets</th>
+                        <th scope="col">Type de compte</th>
                     </tr>
                 </thead>
                 <tbody className="table-group-divider">
@@ -67,6 +68,7 @@ function Utilisateurs() {
                                         <p>No tickets</p>
                                     )}
                                 </td>
+                                <td>{utilisateur.type}</td>
                             </tr>
                         ))
                     ) : (
