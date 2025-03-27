@@ -7,14 +7,17 @@ namespace AdminInterface.Server
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
-        public DbSet<Utilisateur> Utilisateurs { get; set; }
-        public DbSet<Ticket> Tickets { get; set; }
-        public DbSet<GroupeMonitoring> GroupesMonitoring { get; set; }
-        public DbSet<Equipement> Equipements { get; set; }
-        public DbSet<Incident> Incidents { get; set; }
+        public DbSet<Utilisateur> Utilisateur { get; set; }
+        public DbSet<Ticket> Ticket { get; set; }
+        public DbSet<GroupeMonitoring> GroupeMonitoring { get; set; }
+        public DbSet<Equipement> Equipement { get; set; }
+        public DbSet<Incident> Incident { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Equipement>()
+                .HasKey(e => e.ID_Equipement);
+
             modelBuilder.Entity<Ticket>()
                 .HasOne(t => t.Utilisateur)
                 .WithMany(u => u.Tickets)
@@ -35,5 +38,6 @@ namespace AdminInterface.Server
                 .WithMany(e => e.Incidents)
                 .HasForeignKey(i => i.ID_Equipement);
         }
+
     }
 }

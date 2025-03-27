@@ -1,8 +1,15 @@
-import React from 'react';
+﻿import { React, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 const Header = () => {
+    const [estConnecte, setConnecte] = useState(false);
 
+    useEffect(() => {
+        const token = localStorage.getItem("token"); 
+        if (token) {
+            setConnecte(true);
+        }
+    }, []);
     return (
         <header className="w-100">
             <div className="bg-danger">
@@ -11,7 +18,13 @@ const Header = () => {
                         <span className="fs-4 text-light">Gestiam</span>
                     </a>
                     <div className="text-end">
-                        <Link to="/login"><button type="button" className="btn btn-outline-light me-2">Se connecter</button></Link>
+                        {estConnecte ? (
+                            <h4 className="text-light font-weight-bold">Vous êtes bien connecté.</h4>
+                        ) : (
+                            <Link to="/login">
+                                <button type="button" className="btn btn-outline-light me-2">Se connecter</button>
+                            </Link>
+                        )}
                     </div>
                 </div>
             </div>

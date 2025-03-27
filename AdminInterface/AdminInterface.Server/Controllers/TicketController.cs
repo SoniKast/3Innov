@@ -17,18 +17,32 @@ namespace AdminInterface.Server.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Ticket>>> GetTickets()
+        public async Task<ActionResult<IEnumerable<TicketDTO>>> GetTickets()
         {
-            return await _context.Tickets
+            var tickets = await _context.Ticket
                 .Include(t => t.Utilisateur)
                 .Include(t => t.Incident)
                 .ToListAsync();
+
+            // Map to TicketDTO to flatten the structure
+            var ticketDtos = tickets.Select(t => new TicketDTO
+            {
+                ID_Ticket = t.ID_Ticket,
+                Nom_Ticket = t.Nom_Ticket,
+                Description_Ticket = t.Description_Ticket,
+                Etat_Ticket = t.Etat_Ticket,
+                UtilisateurName = $"{t.Utilisateur.Prenom} {t.Utilisateur.Nom}", // Assuming you want to show the full name
+                IncidentRapport = t.Incident?.Rapport_Incident // Handle the null case if Incident is null
+            }).ToList();
+
+            return ticketDtos;
         }
+
 
         [HttpGet("{id}")]
         public async Task<ActionResult<Ticket>> GetTicket(int id)
         {
-            var ticket = await _context.Tickets
+            var ticket = await _context.Ticket
                 .Include(t => t.Utilisateur)
                 .Include(t => t.Incident)
                 .FirstOrDefaultAsync(t => t.ID_Ticket == id);
@@ -41,7 +55,7 @@ namespace AdminInterface.Server.Controllers
         [HttpPost]
         public async Task<ActionResult<Ticket>> CreateTicket(Ticket ticket)
         {
-            _context.Tickets.Add(ticket);
+            _context.Ticket.Add(ticket);
             await _context.SaveChangesAsync();
             return CreatedAtAction(nameof(GetTicket), new { id = ticket.ID_Ticket }, ticket);
         }
@@ -60,11 +74,11 @@ namespace AdminInterface.Server.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteTicket(int id)
         {
-            var ticket = await _context.Tickets.FindAsync(id);
+            var ticket = await _context.Ticket.FindAsync(id);
             if (ticket == null)
                 return NotFound();
 
-            _context.Tickets.Remove(ticket);
+            _context.Ticket.Remove(ticket);
             await _context.SaveChangesAsync();
             return NoContent();
         }

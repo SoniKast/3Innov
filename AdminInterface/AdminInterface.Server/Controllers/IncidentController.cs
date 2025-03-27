@@ -19,13 +19,13 @@ namespace AdminInterface.Server.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Incident>>> GetIncidents()
         {
-            return await _context.Incidents.Include(i => i.Equipement).ToListAsync();
+            return await _context.Incident.Include(i => i.Equipement).ToListAsync();
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<Incident>> GetIncident(int id)
         {
-            var incident = await _context.Incidents.Include(i => i.Equipement).FirstOrDefaultAsync(i => i.ID_Incident == id);
+            var incident = await _context.Incident.Include(i => i.Equipement).FirstOrDefaultAsync(i => i.ID_Incident == id);
             if (incident == null)
                 return NotFound();
             return incident;

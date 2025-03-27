@@ -19,13 +19,13 @@ namespace AdminInterface.Server.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<GroupeMonitoring>>> GetGroupes()
         {
-            return await _context.GroupesMonitoring.ToListAsync();
+            return await _context.GroupeMonitoring.ToListAsync();
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<GroupeMonitoring>> GetGroupe(int id)
         {
-            var groupe = await _context.GroupesMonitoring.FindAsync(id);
+            var groupe = await _context.GroupeMonitoring.FindAsync(id);
             if (groupe == null)
                 return NotFound();
             return groupe;
@@ -34,7 +34,7 @@ namespace AdminInterface.Server.Controllers
         [HttpPost]
         public async Task<ActionResult<GroupeMonitoring>> CreateGroupe(GroupeMonitoring groupe)
         {
-            _context.GroupesMonitoring.Add(groupe);
+            _context.GroupeMonitoring.Add(groupe);
             await _context.SaveChangesAsync();
             return CreatedAtAction(nameof(GetGroupe), new { id = groupe.ID_Groupe }, groupe);
         }
@@ -53,11 +53,11 @@ namespace AdminInterface.Server.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteGroupe(int id)
         {
-            var groupe = await _context.GroupesMonitoring.FindAsync(id);
+            var groupe = await _context.GroupeMonitoring.FindAsync(id);
             if (groupe == null)
                 return NotFound();
 
-            _context.GroupesMonitoring.Remove(groupe);
+            _context.GroupeMonitoring.Remove(groupe);
             await _context.SaveChangesAsync();
             return NoContent();
         }

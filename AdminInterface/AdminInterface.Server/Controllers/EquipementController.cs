@@ -19,13 +19,13 @@ namespace AdminInterface.Server.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Equipement>>> GetEquipements()
         {
-            return await _context.Equipements.Include(e => e.Groupe).ToListAsync();
+            return await _context.Equipement.Include(e => e.Groupe).ToListAsync();
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<Equipement>> GetEquipement(int id)
         {
-            var equipement = await _context.Equipements.Include(e => e.Groupe).FirstOrDefaultAsync(e => e.ID_Equipement == id);
+            var equipement = await _context.Equipement.Include(e => e.Groupe).FirstOrDefaultAsync(e => e.ID_Equipement == id);
             if (equipement == null)
                 return NotFound();
             return equipement;
@@ -34,7 +34,7 @@ namespace AdminInterface.Server.Controllers
         [HttpPost]
         public async Task<ActionResult<Equipement>> CreateEquipement(Equipement equipement)
         {
-            _context.Equipements.Add(equipement);
+            _context.Equipement.Add(equipement);
             await _context.SaveChangesAsync();
             return CreatedAtAction(nameof(GetEquipement), new { id = equipement.ID_Equipement }, equipement);
         }
@@ -53,11 +53,11 @@ namespace AdminInterface.Server.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteEquipement(int id)
         {
-            var equipement = await _context.Equipements.FindAsync(id);
+            var equipement = await _context.Equipement.FindAsync(id);
             if (equipement == null)
                 return NotFound();
 
-            _context.Equipements.Remove(equipement);
+            _context.Equipement.Remove(equipement);
             await _context.SaveChangesAsync();
             return NoContent();
         }
