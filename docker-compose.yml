@@ -1,0 +1,27 @@
+services:
+  admininterface.server:
+    image: ${DOCKER_REGISTRY-}admininterfaceserver
+    ports:
+      - 5000:80
+    build:
+      context: .
+      dockerfile: AdminInterface/AdminInterface.Server/Dockerfile
+    networks: 
+      - dev-network
+
+  admininterface.client:
+    image: admininterfaceclient
+    build:
+      context: AdminInterface/admininterface.client
+      dockerfile: Dockerfile
+    environment:
+      NODE_ENV: production
+    ports:
+      - 3000:3000
+    depends_on:
+      - admininterface.server
+    networks: 
+      - dev-network
+
+networks:
+  dev-network: {}    

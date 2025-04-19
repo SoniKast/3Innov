@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,11 +25,16 @@ builder.Services.AddCors(options =>
 builder.Services.AddControllers().AddJsonOptions(options =>
 {
     options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve;
-    options.JsonSerializerOptions.WriteIndented = true; // (Optionnel) Format JSON plus lisible
+    options.JsonSerializerOptions.WriteIndented = true;
 });
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddSpaStaticFiles(configuration =>
+{
+    configuration.RootPath = "admininterface.client/build";
+});
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
@@ -47,12 +53,6 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 var app = builder.Build();
 
-app.UseRouting();
-
-app.UseStaticFiles();
-app.UseDefaultFiles();
-
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
@@ -60,13 +60,26 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseHttpsRedirection();
+
+app.UseStaticFiles();
+app.UseSpaStaticFiles();
+
+app.UseRouting();
+
 app.UseCors("AllowAll");
 
-app.UseHttpsRedirection();
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
 
-app.MapFallbackToFile("/public/index.html");
+// Spa fallback (serve React app)
+app.MapFallbackToFile("index.html");
+
+app.UseSpa(spa =>
+{
+    spa.Options.SourcePath = "admininterface.client";
+});
 
 app.Run();
