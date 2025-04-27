@@ -6,6 +6,10 @@ services:
     build:
       context: .
       dockerfile: AdminInterface/AdminInterface.Server/Dockerfile
+    depends_on:
+      - mysql
+    environment:
+      - ConnectionStrings__DefaultConnection=server=mysql;port=3306;database=innovationprojet2025;user=root;password=
     networks: 
       - dev-network
 
@@ -22,6 +26,26 @@ services:
       - admininterface.server
     networks: 
       - dev-network
+
+  mysql:
+    image: mysql:latest
+    restart: always
+    environment:
+        MYSQL_DATABASE: 'innovationprojet2025'
+        MYSQL_USER: 'root'
+        MYSQL_PASSWORD: ''
+        MYSQL_ROOT_PASSWORD: ''
+    ports:
+        - '3306:3306'
+    expose:
+        - '3306'
+    volumes:
+        - db:/var/lib/mysql
+    networks:
+      - dev-network
+
+volumes:
+  db:
 
 networks:
   dev-network: {}    

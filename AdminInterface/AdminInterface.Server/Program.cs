@@ -31,11 +31,6 @@ builder.Services.AddControllers().AddJsonOptions(options =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddSpaStaticFiles(configuration =>
-{
-    configuration.RootPath = "admininterface.client/build";
-});
-
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
@@ -60,10 +55,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
-
-app.UseStaticFiles();
-app.UseSpaStaticFiles();
+app.Urls.Add("http://0.0.0.0:80");
 
 app.UseRouting();
 
@@ -73,13 +65,5 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
-
-// Spa fallback (serve React app)
-app.MapFallbackToFile("index.html");
-
-app.UseSpa(spa =>
-{
-    spa.Options.SourcePath = "admininterface.client";
-});
 
 app.Run();
