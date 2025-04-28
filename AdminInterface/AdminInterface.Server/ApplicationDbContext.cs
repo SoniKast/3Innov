@@ -37,6 +37,11 @@ namespace AdminInterface.Server
                 .HasOne(i => i.Equipement)
                 .WithMany(e => e.Incidents)
                 .HasForeignKey(i => i.ID_Equipement);
+
+            foreach (var entity in modelBuilder.Model.GetEntityTypes())
+            {
+                entity.SetTableName(entity.GetTableName()!.ToLowerInvariant());
+            }
         }
 
     }

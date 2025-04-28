@@ -17,9 +17,13 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll",
-        policy => policy.AllowAnyOrigin()
-                        .AllowAnyMethod()
-                        .AllowAnyHeader());
+        policy =>
+        {
+            policy.WithOrigins("http://localhost:3000")  // Your frontend address
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .AllowCredentials(); // Allow cookies or credentials, if needed
+        });
 });
 
 builder.Services.AddControllers().AddJsonOptions(options =>

@@ -6,6 +6,11 @@ services:
     build:
       context: .
       dockerfile: AdminInterface/AdminInterface.Server/Dockerfile
+<<<<<<< Updated upstream
+=======
+    depends_on:
+      - mysql
+>>>>>>> Stashed changes
     networks: 
       - dev-network
 
@@ -14,8 +19,6 @@ services:
     build:
       context: AdminInterface/admininterface.client
       dockerfile: Dockerfile
-    environment:
-      NODE_ENV: production
     ports:
       - 3000:3000
     depends_on:
@@ -23,5 +26,27 @@ services:
     networks: 
       - dev-network
 
+<<<<<<< Updated upstream
+=======
+  mysql:
+    image: mysql:latest
+    restart: always
+    environment:
+        MYSQL_DATABASE: 'innovationprojet2025'
+        MYSQL_ROOT_PASSWORD: 'root'
+    ports:
+        - 3306:3306
+    expose:
+        - 3306
+    volumes:
+        - db:/var/lib/mysql
+        - ./db:/docker-entrypoint-initdb.d
+    networks:
+      - dev-network
+
+volumes:
+  db:
+
+>>>>>>> Stashed changes
 networks:
   dev-network: {}    

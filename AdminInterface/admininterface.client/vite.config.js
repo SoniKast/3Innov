@@ -29,6 +29,7 @@ export default defineConfig({
     },
     server: {
         proxy: {
+<<<<<<< Updated upstream
             '^/weatherforecast': {
                 target,
                 secure: false
@@ -36,5 +37,17 @@ export default defineConfig({
         },
         port: 51325,
         https: false,
+=======
+            '/api': {
+                target: 'http://localhost:5000',  // Target your backend container
+                changeOrigin: true,
+                secure: false,
+            }
+        },
+        port: 3000,  // Use standard port for frontend inside Docker
+        https: false, // Make sure it stays HTTP
+        host: 'admininterface.client', // node container in docker (container name)
+        origin: 'http://localhost:3000', // exposed node container address
+>>>>>>> Stashed changes
     }
 })
