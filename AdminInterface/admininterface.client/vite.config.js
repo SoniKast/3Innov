@@ -19,7 +19,6 @@ if (!fs.existsSync(baseFolder)) {
 const target = env.ASPNETCORE_HTTPS_PORT ? `https://localhost:${env.ASPNETCORE_HTTPS_PORT}` :
     env.ASPNETCORE_URLS ? env.ASPNETCORE_URLS.split(';')[0] : 'https://localhost:7075';
 
-// https://vitejs.dev/config/
 export default defineConfig({
     plugins: [plugin()],
     resolve: {
@@ -29,15 +28,6 @@ export default defineConfig({
     },
     server: {
         proxy: {
-<<<<<<< Updated upstream
-            '^/weatherforecast': {
-                target,
-                secure: false
-            }
-        },
-        port: 51325,
-        https: false,
-=======
             '/api': {
                 target: 'http://localhost:5000',  // Target your backend container
                 changeOrigin: true,
@@ -48,9 +38,5 @@ export default defineConfig({
         https: false, // Make sure it stays HTTP
         host: 'admininterface.client', // node container in docker (container name)
         origin: 'http://localhost:3000', // exposed node container address
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
     }
 })

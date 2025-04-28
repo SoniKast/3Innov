@@ -6,14 +6,8 @@ services:
     build:
       context: .
       dockerfile: AdminInterface/AdminInterface.Server/Dockerfile
-<<<<<<< Updated upstream
-=======
     depends_on:
       - mysql
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
     networks: 
       - dev-network
 
@@ -29,8 +23,6 @@ services:
     networks: 
       - dev-network
 
-<<<<<<< Updated upstream
-=======
   mysql:
     image: mysql:latest
     restart: always
@@ -50,6 +42,5 @@ services:
 volumes:
   db:
 
->>>>>>> Stashed changes
 networks:
   dev-network: {}    
