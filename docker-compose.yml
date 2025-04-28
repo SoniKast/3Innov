@@ -10,6 +10,9 @@ services:
 =======
     depends_on:
       - mysql
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     networks: 
       - dev-network

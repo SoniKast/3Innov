@@ -48,6 +48,9 @@ export default defineConfig({
         https: false, // Make sure it stays HTTP
         host: 'admininterface.client', // node container in docker (container name)
         origin: 'http://localhost:3000', // exposed node container address
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     }
 })
