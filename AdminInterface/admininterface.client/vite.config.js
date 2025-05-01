@@ -15,6 +15,7 @@ export default defineConfig({
             '/api': {
                 target: 'http://admininterface.server:5000',  // Target your backend container
                 changeOrigin: true,
+                rewrite: path => path.replace(/^\/api/, ''),
                 secure: false,
             }
         },
