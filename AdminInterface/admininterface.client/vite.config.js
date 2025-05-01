@@ -13,7 +13,7 @@ export default defineConfig({
     server: {
         proxy: {
             '/api': {
-                target: 'http://localhost:5000',  // Target your backend container
+                target: 'http://admininterface.server:5000',  // Target your backend container
                 changeOrigin: true,
                 secure: false,
             }
