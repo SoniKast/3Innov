@@ -18,7 +18,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowAll",
         policy =>
         {
-            policy.WithOrigins("http://admininterface.server:3000")  // Your frontend address
+            policy.AllowAnyOrigin()
                 .AllowAnyMethod()
                 .AllowAnyHeader()
                 .AllowCredentials(); // Allow cookies or credentials, if needed
