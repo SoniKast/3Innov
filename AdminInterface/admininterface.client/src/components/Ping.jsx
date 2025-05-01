@@ -25,7 +25,7 @@ const Ping = () => {
         setPingResult('');
 
         try {
-            const response = await fetch(`http://localhost:5000/api/ping?ip=${ipAddress}`);
+            const response = await fetch(`http://admininterface.server:5000/api/ping?ip=${ipAddress}`);
 
             if (!response.ok) {
                 throw new Error('Erreur lors de l\'exécution du ping.');

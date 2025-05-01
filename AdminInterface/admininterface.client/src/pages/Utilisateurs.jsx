@@ -10,7 +10,7 @@ function Utilisateurs() {
     useEffect(() => {
         const fetchUtilisateurs = async () => {
             try {
-                const response = await fetch('http://localhost:5000/api/utilisateur');
+                const response = await fetch('http://admininterface.server:5000/api/utilisateur');
                 if (!response.ok) {
                     throw new Error('Failed to fetch tickets');
                 }

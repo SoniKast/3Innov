@@ -13,7 +13,7 @@ export default defineConfig({
     server: {
         proxy: {
             '/api': {
-                target: 'http://172.17.0.1:5000',  // Target your backend container
+                target: 'http://admininterface.server:5000',  // Target your backend container
                 changeOrigin: true,
                 secure: false,
             }
@@ -21,6 +21,6 @@ export default defineConfig({
         port: 3000,  // Use standard port for frontend inside Docker
         https: false, // Make sure it stays HTTP
         host: 'admininterface.client', // node container in docker (container name)
-        origin: 'http://localhost:3000', // exposed node container address
+        origin: 'http://admininterface.client:3000', // exposed node container address
     }
 })
