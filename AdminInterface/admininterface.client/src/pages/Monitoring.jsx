@@ -12,7 +12,7 @@ function Monitoring() {
     useEffect(() => {
         const fetchEquipement = async () => {
             try {
-                const response = await fetch('http://localhost:5000/api/equipements/');
+                const response = await fetch('/api/equipements/');
                 if (!response.ok) {
                     throw new Error('Failed to fetch equipement');
                 }
