@@ -13,10 +13,9 @@ export default defineConfig({
     server: {
         proxy: {
             '/api': {
-                target: 'http://admininterface.server:5000',  // Target your backend container
+                target: 'http://localhost:5000',  // Target your backend container
                 changeOrigin: true,
-                rewrite: path => path.replace(/^\/api/, ''),
-                secure: false,
+                rewrite: (path) => path.replace(/^\/api/, ''),
             }
         },
         port: 3000,  // Use standard port for frontend inside Docker
