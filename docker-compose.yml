@@ -1,13 +1,13 @@
 services:
   admininterface.server:
     image: ${DOCKER_REGISTRY-}admininterfaceserver
-    ports:
-      - 5000:80
     build:
       context: .
       dockerfile: AdminInterface/AdminInterface.Server/Dockerfile
     depends_on:
       - mysql
+    expose:
+      - 5000
     networks: 
       - dev-network
 
@@ -16,8 +16,8 @@ services:
     build:
       context: AdminInterface/admininterface.client
       dockerfile: Dockerfile
-    ports:
-      - 3000:3000
+    expose:
+      - 3000
     depends_on:
       - admininterface.server
     networks: 
@@ -31,8 +31,6 @@ services:
         MYSQL_ROOT_PASSWORD: 'root'
     ports:
         - 3306:3306
-    expose:
-        - 3306
     volumes:
         - db:/var/lib/mysql
         - ./db:/docker-entrypoint-initdb.d
