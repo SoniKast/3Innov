@@ -1,9 +1,9 @@
 # Start from the .NET SDK image for building
 FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 
-# Install Node.js (LTS version)
-RUN apt-get update && apt-get install -y \
-    curl && \
+# Install Node.js (LTS version) and ping utility
+RUN apt-get update && \
+    apt-get install -y curl iputils-ping && \
     curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && \
     apt-get install -y nodejs
 
@@ -23,6 +23,9 @@ RUN dotnet publish "./AdminInterface.Server.csproj" -c $BUILD_CONFIGURATION -o /
 
 # Final image (production-ready)
 FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS base
+
+RUN apt-get update && apt-get install -y iputils-ping
+
 USER $APP_UID
 WORKDIR /app
 EXPOSE 8080

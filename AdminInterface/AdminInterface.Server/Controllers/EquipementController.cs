@@ -41,6 +41,12 @@ namespace AdminInterface.Server.Controllers
             return Ok(equipements);
         }
 
+        [HttpGet("testping")]
+        public IActionResult TestPing([FromQuery] string ip)
+        {
+            return Ok("Ping test received: " + ip);
+        }
+
         [HttpGet("{id}")]
         public async Task<ActionResult<Equipement>> GetEquipement(int id)
         {
