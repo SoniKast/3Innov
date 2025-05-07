@@ -22,6 +22,7 @@ export default defineConfig({
         https: false, // Make sure it stays HTTP
         host: 'admininterface.client', // node container in docker (container name)
         origin: 'http://admininterface.client:3000', // exposed node container address
+        cors: true,
     },
     assetsInclude: ['**/*.woff', '**/*.woff2']
 })

@@ -3,14 +3,10 @@ import { Routes, Route, useLocation } from 'react-router-dom';
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
 import ProtectedRoute from './components/ProtectedRoute';
-import Home from './pages/Home';
-import Monitoring from './pages/Monitoring';
-import Tickets from './pages/Tickets';
+import PageRoutes from './components/PageRoutes';
+import EditUser from './pages/EditUser';
 import Register from './pages/Register';
-import Ping from './components/Ping';
 import Login from './pages/Login';
-import CreateTicket from './pages/CreateTicket';
-import Utilisateurs from './pages/Utilisateurs';
 
 const App = () => {
     const location = useLocation();
@@ -25,36 +21,19 @@ const App = () => {
                 {showSidebar && < Sidebar />}
                 <div className="container p-3 justify-content-center">
                     <Routes>
-                        <Route path="/" element={
-                            <ProtectedRoute>
-                                <Home />
-                            </ProtectedRoute>
-                        } />
-                        <Route path="/monitoring" element={
-                            <ProtectedRoute>
-                                <Monitoring />
-                            </ProtectedRoute>
-                        } />
+                        {PageRoutes.map((PageRoutes, index) => (
+                            <Route key={index} path={PageRoutes.path} element={
+                                <ProtectedRoute>
+                                    <PageRoutes.component />
+                                </ProtectedRoute>
+                            } />
+                        ))}
                         <Route path="/monitoring/:id/ping" element={
                             <ProtectedRoute>
                                 <Ping />
                             </ProtectedRoute>
                         } />
-                        <Route path="/tickets" element={
-                            <ProtectedRoute>
-                                <Tickets />
-                            </ProtectedRoute>
-                        } />
-                        <Route path="/create-ticket" element={
-                            <ProtectedRoute>
-                                <CreateTicket />
-                            </ProtectedRoute>
-                        } />
-                        <Route path="/utilisateurs" element={
-                            <ProtectedRoute>
-                                <Utilisateurs />
-                            </ProtectedRoute>
-                        } />
+                        <Route path='/utilisateurs/:id/edit' element={<EditUser />} />,
                         <Route path="/register" element={<Register />} />
                         <Route path="/login" element={<Login />} />
                     </Routes>

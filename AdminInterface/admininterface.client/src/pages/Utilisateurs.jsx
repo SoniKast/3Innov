@@ -46,6 +46,7 @@ function Utilisateurs() {
                         <th scope="col">Email</th>
                         <th scope="col">Tickets</th>
                         <th scope="col">Type de compte</th>
+                        <th scope="col">Modifications</th>
                     </tr>
                 </thead>
                 <tbody className="table-group-divider">
@@ -69,6 +70,11 @@ function Utilisateurs() {
                                     )}
                                 </td>
                                 <td>{utilisateur.type}</td>
+                                <td>
+                                    <button className="btn btn-primary" onClick={() => navigate(`/utilisateurs/${equipement.iD_Utilisateur}/edit`)}>
+                                        Suivi
+                                    </button>
+                                </td>
                             </tr>
                         ))
                     ) : (

@@ -22,7 +22,6 @@ const Sidebar = () => {
                     <DropdownMenu
                         title="Assistance"
                         links={[
-                            { label: "+ Créer un ticket", path: "/create-ticket" },
                             { label: "+ Tickets", path: "/tickets" },
                             { label: "+ Monitoring", path: "/monitoring" }
                         ]}
@@ -32,8 +31,9 @@ const Sidebar = () => {
                     <DropdownMenu
                         title="Administration"
                         links={[
+                            { label: "+ Créer un ticket", path: "/create-ticket" },
                             { label: "+ Gérer utilisateurs", path: "/utilisateurs" },
-                            { label: "+ Paramètres avancés", path: "/parametres" }
+                            { label: "+ Statistiques", path: "/stats" },
                         ]}
                     />
                 </li>
