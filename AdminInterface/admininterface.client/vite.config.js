@@ -2,7 +2,9 @@ import { fileURLToPath, URL } from 'node:url';
 import { defineConfig } from 'vite';
 import plugin from '@vitejs/plugin-react';
 
-// https://vitejs.dev/config/
+const isDocker = process.env.DOCKER === 'true';
+
+
 export default defineConfig({
     plugins: [plugin()],
     resolve: {
@@ -19,6 +21,10 @@ export default defineConfig({
                 changeOrigin: true,
                 secure: false,
             }
-        }
-    }
+        },
+		host: isDocker ? 'admininterface.client' : 'localhost',
+		origin: isDocker ? 'http://admininterface.client:3000' : 'http://localhost:3000',
+		cors: true,
+    },
+	assetsInclude: ['**/*.woff', '**/*.woff2']
 });

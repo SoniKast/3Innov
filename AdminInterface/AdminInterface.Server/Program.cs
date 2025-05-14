@@ -28,6 +28,11 @@ builder.Services.AddControllers().AddJsonOptions(options =>
     options.JsonSerializerOptions.WriteIndented = true;
 });
 
+builder.Services.AddSpaStaticFiles(configuration =>
+{
+    configuration.RootPath = "admininterface.client/build";
+});
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -54,8 +59,13 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+else
+{
+    app.UseSpaStaticFiles(); // Only serve static frontend in production
+}
 
-app.Urls.Add("http://0.0.0.0:80");
+app.Urls.Add("http://localhost:5000");
+app.Urls.Add("http://0.0.0.0:5000");
 
 app.UseRouting();
 
@@ -65,5 +75,13 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+
+if (!app.Environment.IsDevelopment())
+{
+    app.UseSpa(spa =>
+    {
+        spa.Options.SourcePath = "admininterface.client";
+    });
+}
 
 app.Run();

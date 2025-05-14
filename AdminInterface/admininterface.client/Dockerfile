@@ -2,6 +2,8 @@ FROM node:18-alpine
 
 WORKDIR /usr/src/app
 
+ENV DOCKER=true
+
 # Copy package.json and package-lock.json
 COPY package*.json ./
 
