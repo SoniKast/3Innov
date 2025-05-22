@@ -7,21 +7,30 @@ namespace AdminInterface.Server.Models
     {
         [Key]
         public int ID_Ticket { get; set; }
-        [ForeignKey("Utilisateur")]
-        public int ID_Utilisateur { get; set; }
-        [ForeignKey("Incident")]
-        public int ID_Incident { get; set; }
+
         [Required]
         public string Etat_Ticket { get; set; }
+
         [Required]
         public string Nom_Ticket { get; set; }
+
         [Required]
         public string Description_Ticket { get; set; }
+
         [Required]
         public string Type_de_tickets { get; set; }
+
         [Required]
-        public Utilisateur Utilisateur { get; set; }
+        public int ID_Utilisateur { get; set; }
+
         [Required]
-        public Incident Incident { get; set; }
+        public int ID_Incident { get; set; }
+
+        [ForeignKey("ID_Utilisateur")]
+        public Utilisateur? Utilisateur { get; set; }
+
+        [ForeignKey("ID_Incident")]
+        public Incident? Incident { get; set; }
     }
+
 }

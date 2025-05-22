@@ -1,33 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-function EditUser() {
-    const { id } = useParams(); // rÈcupËre l'ID depuis l'URL
-    const navigate = useNavigate();
+import React, { useState } from 'react';
 
+function CreateUser() {
     const [nom, setNom] = useState('');
     const [prenom, setPrenom] = useState('');
     const [email, setEmail] = useState('');
     const [type, setType] = useState('');
-    const [motDePasse, setMotDePasse] = useState(''); 
     const [error, setError] = useState('');
-
-    useEffect(() => {
-        if (id) {
-            fetch(`/api/utilisateur/${id}`)
-                .then(res => {
-                    if (!res.ok) throw new Error('Erreur lors du chargement de l\'utilisateur');
-                    return res.json();
-                })
-                .then(data => {
-                    setNom(data.nom);
-                    setPrenom(data.prenom);
-                    setEmail(data.email);
-                    setMotDePasse(data.mot_de_pass);
-                    setType(data.type);
-                })
-                .catch(() => setError("Impossible de charger les donnÈes de l'utilisateur."));
-        }
-    }, [id]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -36,7 +14,6 @@ function EditUser() {
         console.log("prenom:", prenom);
         console.log("email:", email);
         console.log("type:", type);
-        console.log("mot_de_pass:", motDePasse);
 
         if (!nom || !prenom || !email || !type) {
             setError("Tout les champs sont obligatoires.");
@@ -44,31 +21,39 @@ function EditUser() {
         }
 
         const utilisateur = {
-            nom, prenom, email, type, mot_de_pass: motDePasse,
+            nom: nom,
+            prenom: prenom,
+            email: email,
+            type: type,
+            Mot_de_pass: "123",
         };
 
         try {
-            const res = await fetch(`/api/utilisateur/${id}`, {
-                method: 'PUT',
+            const res = await fetch('/api/utilisateur', {
+                method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(utilisateur)
             });
 
             if (!res.ok) {
-                throw new Error('Erreur lors de la modification');
+                throw new Error('Erreur lors de la cr√©ation');
             }
 
-            alert("Utilisateur modifiÈ avec succËs !");
+            setNom('');
+            setPrenom('');
+            setEmail('');
+            setType('Client');
+            alert("Utilisateur cr√©√© avec succ√®s !");
             <Navigate to='/utilisateurs' />;
         } catch {
-            setError("Erreur lors de la modification de l'utilisateur.");
+            setError("Erreur lors de la cr√©ation de l'utilisateur.");
         }
     };
 
     return (
         <div className="main-page">
             <div className="container mt-5">
-                <h2 className="text-center mb-4">Modifier un utilisateur</h2>
+                <h2 className="text-center mb-4">Cr√©er un utilisateur</h2>
                 {error && <div className="alert alert-danger">{error}</div>}
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">
@@ -77,31 +62,26 @@ function EditUser() {
                     </div>
 
                     <div className="form-group mt-3">
-                        <label htmlFor="userFirstName">PrÈnom</label>
+                        <label htmlFor="userFirstName">Pr√©nom</label>
                         <input type="text" className="form-control" id="userFirstName" value={prenom} onChange={(e) => setPrenom(e.target.value)} required />
                     </div>
 
                     <div className="form-group mt-3">
                         <label htmlFor="userEmail">Email</label>
-                        <input type="email" className="form-control" id="userEmail" value={email} onChange={(e) => setEmail(e.target.value)} required />
-                    </div>
-
-                    <div className="form-group mt-3">
-                        <label htmlFor="userPassword">Mot de passe</label>
-                        <input type="password" className="form-control" id="userPassword" value={motDePasse} onChange={(e) => setMotDePasse(e.target.value)} required />
+                        <input type="text" className="form-control" id="userEmail" value={email} onChange={(e) => setEmail(e.target.value)} required />
                     </div>
 
                     <div className="form-group mt-3">
                         <label htmlFor="userType">Type</label>
                         <select className="form-control" id="userType" value={type} onChange={(e) => setType(e.target.value)} required >
-                            <option value="">-- SÈlectionnez le type --</option>
+                            <option value="">-- S√©lectionnez le type --</option>
                             <option value="Client">Client</option>
                             <option value="Admin">Administrateur</option>
                         </select>
                     </div>
 
                     <div className="text-center mt-4">
-                        <button type="submit" className="btn btn-primary">Modifier l'utilisateur</button>
+                        <button type="submit" className="btn btn-primary">Cr√©er l'utilisateur</button>
                     </div>
                 </form>
             </div>
@@ -109,4 +89,4 @@ function EditUser() {
     );
 }
 
-export default EditUser;
+export default CreateUser;

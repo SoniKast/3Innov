@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function Utilisateurs() {
     // State to store ticket data
     const [utilisateurs, setUtilisateurs] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+
+    const navigate = useNavigate();
 
     // Fetch tickets from the API
     useEffect(() => {
@@ -66,13 +69,13 @@ function Utilisateurs() {
                                             ))}
                                         </ul>
                                     ) : (
-                                        <p>No tickets</p>
+                                        <p>Aucun tickets</p>
                                     )}
                                 </td>
                                 <td>{utilisateur.type}</td>
                                 <td>
-                                    <button className="btn btn-primary" onClick={() => navigate(`/utilisateurs/${equipement.iD_Utilisateur}/edit`)}>
-                                        Suivi
+                                    <button className="btn btn-primary" onClick={() => navigate(`/utilisateurs/${utilisateur.iD_Utilisateur}/edit`, { state: { id: utilisateur.iD_Utilisateur } })}>
+                                        Modifier
                                     </button>
                                 </td>
                             </tr>
@@ -86,6 +89,7 @@ function Utilisateurs() {
                     )}
                 </tbody>
             </table>
+            <center><button className="btn btn-primary" onClick={() => navigate(`/create-user/`) }>Créer un utilisateur</button></center>
         </div>
     );
 }

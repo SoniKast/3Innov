@@ -71,19 +71,30 @@ namespace AdminInterface.Server.Controllers
         }
 
 
-        [HttpPost("create")]
-        public IActionResult CreateUtilisateur([FromBody] Utilisateur utilisateur)
+        [HttpPost]
+        public async Task<ActionResult<Utilisateur>> CreateUtilisateur(Utilisateur utilisateur)
         {
+            // Clear tickets to avoid unnecessary nested validation
+            utilisateur.Tickets = null;
+
             _context.Utilisateur.Add(utilisateur);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
+
             return CreatedAtAction(nameof(GetUtilisateur), new { id = utilisateur.ID_Utilisateur }, utilisateur);
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutUtilisateur(int id, Utilisateur utilisateur)
+        public async Task<IActionResult> PutUtilisateur(int id, UpdateUtilisateurDTO dto)
         {
-            if (id != utilisateur.ID_Utilisateur) return BadRequest();
-            _context.Entry(utilisateur).State = EntityState.Modified;
+            var utilisateur = await _context.Utilisateur.FindAsync(id);
+            if (utilisateur == null) return NotFound();
+
+            utilisateur.Nom = dto.Nom;
+            utilisateur.Prenom = dto.Prenom;
+            utilisateur.Email = dto.Email;
+            utilisateur.Type = dto.Type;
+            utilisateur.Mot_de_pass = dto.Mot_de_pass;
+
             await _context.SaveChangesAsync();
             return NoContent();
         }

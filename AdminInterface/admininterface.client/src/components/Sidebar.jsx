@@ -32,13 +32,12 @@ const Sidebar = () => {
                         title="Administration"
                         links={[
                             { label: "+ Créer un ticket", path: "/create-ticket" },
+                            { label: "+ Enregistrer un équipement", path: "/register-equipment" },
                             { label: "+ Gérer utilisateurs", path: "/utilisateurs" },
+                            { label: "+ Créer un utilisateur", path: "/create-user" },
                             { label: "+ Statistiques", path: "/stats" },
                         ]}
                     />
-                </li>
-                <li className="nav-item">
-                    <Link to="/settings" className="bg-light text-center nav-link link-secondary">Paramètres</Link>
                 </li>
                 <li className="nav-item">
                     <button className="bg-light text-center nav-link link-secondary border-0 w-100" onClick={handleLogout}>Déconnexion</button>

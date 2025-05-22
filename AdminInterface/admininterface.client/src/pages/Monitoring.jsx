@@ -82,6 +82,7 @@ function Monitoring() {
                     )}
                 </tbody>
             </table>
+            <center><button className="btn btn-primary" onClick={() => navigate(`/register-equipment/`)}>Enregistrer un équipement</button></center>
         </div>
     );
 }

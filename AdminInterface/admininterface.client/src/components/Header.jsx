@@ -47,27 +47,31 @@ const Header = () => {
                         <span className="fs-4 text-light">Gestiam</span>
                     </a>
                     <div className="position-relative me-3">
-                        <input
-                            type="text"
-                            className="form-control"
-                            placeholder="Rechercher une page..."
-                            value={searchTerm}
-                            onChange={(e) => setSearchTerm(e.target.value)}
-                        />
-                        {filteredPages.length > 0 && (
-                            <ul className="list-group position-absolute w-100 z-3">
-                                {filteredPages.map((page, index) => (
-                                    <Link
-                                        key={index}
-                                        to={page.path}
-                                        className="list-group-item list-group-item-action"
-                                        onClick={() => setSearchTerm('')}
-                                    >
-                                        {page.name}
-                                    </Link>
-                                ))}
-                            </ul>
-                        )}
+                        {estConnecte && ( 
+							<> 
+							<input
+								type="text"
+								className="form-control"
+								placeholder="Rechercher une page..."
+								value={searchTerm}
+								onChange={(e) => setSearchTerm(e.target.value)}
+							/>
+							{filteredPages.length > 0 && (
+								<ul className="list-group position-absolute w-100 z-3">
+									{filteredPages.map((page, index) => (
+										<Link
+											key={index}
+											to={page.path}
+											className="list-group-item list-group-item-action"
+											onClick={() => setSearchTerm('')}
+										>
+											{page.name}
+										</Link>
+									))}
+								</ul>
+							)}
+						 </>
+                       )} 
                     </div>
                     <div className="text-end align-middle">
                         {estConnecte ? (

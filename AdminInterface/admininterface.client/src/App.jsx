@@ -6,7 +6,6 @@ import ProtectedRoute from './components/ProtectedRoute';
 import PageRoutes from './components/PageRoutes';
 import Ping from './components/Ping';
 import EditUser from './pages/EditUser';
-import Register from './pages/Register';
 import Login from './pages/Login';
 import LoadingSpinner from './components/LoadingSpinner';
 
@@ -44,8 +43,11 @@ const App = () => {
                                 <Ping />
                             </ProtectedRoute>
                         } />
-                        <Route path='/utilisateurs/:id/edit' element={<EditUser />} />
-                        <Route path="/register" element={<Register />} />
+                        <Route path='/utilisateurs/:id/edit' element={
+                            <ProtectedRoute>
+                                <EditUser />
+                            </ProtectedRoute>
+                        } />
                         <Route path="/login" element={<Login />} />
                     </Routes>
                 </div>

@@ -1,33 +1,83 @@
-﻿import React, { useState } from 'react';
+﻿import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function CreateTicket() {
-    // Déclaration des états
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
-    const [type, setType] = useState('low');
+    const [type, setType] = useState('bug');
+    const [utilisateurId, setUtilisateurId] = useState('');
+    const [incidentId, setIncidentId] = useState('');
     const [error, setError] = useState('');
 
-    // Fonction pour envoyer le ticket
-    const handleSubmit = (e) => {
+    const [utilisateurs, setUtilisateurs] = useState([]);
+    const [incidents, setIncidents] = useState([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const resUsers = await fetch('/api/utilisateur');
+                const usersData = await resUsers.json();
+                setUtilisateurs(usersData.$values);
+            } catch {
+                setError("Erreur lors du chargement des utilisateurs.");
+            }
+
+            try {
+                const resIncidents = await fetch('/api/incidents');
+                const incidentsData = await resIncidents.json();
+                setIncidents(incidentsData.$values);
+            } catch {
+                setError("Erreur lors du chargement des incidents.");
+            }
+        };
+
+        fetchData();
+    }, []);
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // Vérification des champs obligatoires
-        if (!title || !description) {
-            setError('Le titre et la description sont obligatoires.');
+        console.log("title:", title);
+        console.log("description:", description);
+        console.log("utilisateurId:", utilisateurId);
+        console.log("incidentId:", incidentId);
+
+        if (!title || !description || !utilisateurId || !incidentId) {
+            setError("Le titre, la description, l'utilisateur et l'incident sont obligatoires.");
             return;
         }
 
-        // Préparer le ticket à envoyer (exemple)
-        const ticket = { title, description, type };
+        const ticket = {
+            nom_Ticket: title,
+            description_Ticket: description,
+            etat_Ticket: "Ouvert",
+            type_de_tickets: type,
+            id_Utilisateur: parseInt(utilisateurId),
+            id_Incident: parseInt(incidentId),
+        };
 
-        // Vous pouvez envoyer ce ticket à votre API
-        console.log('Ticket créé:', ticket);
+        try {
+            const res = await fetch('/api/tickets', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(ticket)
+            });
 
-        // Effacer les champs après soumission
-        setTitle('');
-        setDescription('');
-        setType('bug');
-        setError('');
+            if (!res.ok) {
+                throw new Error('Erreur lors de la création');
+            }
+
+            setTitle('');
+            setDescription('');
+            setType('bug');
+            setUtilisateurId('');
+            setIncidentId('');
+            setError('');
+            alert("Ticket créé avec succès !");
+            <Navigate to='/tickets' />;
+        } catch {
+            setError("Erreur lors de la création du ticket.");
+        }
     };
 
     return (
@@ -36,48 +86,49 @@ function CreateTicket() {
                 <h2 className="text-center mb-4">Créer un Ticket</h2>
                 {error && <div className="alert alert-danger">{error}</div>}
                 <form onSubmit={handleSubmit}>
-                    {/* Titre du ticket */}
                     <div className="form-group">
                         <label htmlFor="ticketTitle">Titre du Ticket</label>
-                        <input
-                            type="text"
-                            className="form-control"
-                            id="ticketTitle"
-                            placeholder="Entrez le titre"
-                            value={title}
-                            onChange={(e) => setTitle(e.target.value)}
-                            required
-                        />
+                        <input type="text" className="form-control" id="ticketTitle" value={title} onChange={(e) => setTitle(e.target.value)} required />
                     </div>
 
                     <div className="form-group mt-3">
                         <label htmlFor="ticketDescription">Description</label>
-                        <textarea
-                            className="form-control"
-                            id="ticketDescription"
-                            rows="4"
-                            placeholder="Entrez la description du ticket"
-                            value={description}
-                            onChange={(e) => setDescription(e.target.value)}
-                            required
-                        />
+                        <textarea className="form-control" id="ticketDescription" rows="4" value={description} onChange={(e) => setDescription(e.target.value)} required />
                     </div>
 
                     <div className="form-group mt-3">
                         <label htmlFor="ticketType">Type</label>
-                        <select
-                            className="form-control"
-                            id="ticketType"
-                            value={type}
-                            onChange={(e) => setType(e.target.value)}
-                        >
+                        <select className="form-control" id="ticketType" value={type} onChange={(e) => setType(e.target.value)}>
                             <option value="bug">Bug</option>
                             <option value="maintenance">Maintenance</option>
                             <option value="amelioration">Amélioration</option>
                         </select>
                     </div>
 
-                    {/* Bouton de soumission */}
+                    <div className="form-group mt-3">
+                        <label htmlFor="utilisateurSelect">Utilisateur</label>
+                        <select className="form-control" id="utilisateurSelect" value={utilisateurId} onChange={(e) => setUtilisateurId(e.target.value)} required>
+                            <option value="">-- Sélectionnez un utilisateur --</option>
+                            {utilisateurs.map(utilisateur => (
+                                <option key={utilisateur.iD_Utilisateur} value={utilisateur.iD_Utilisateur}>
+                                    {utilisateur.prenom} {utilisateur.nom}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
+
+                    <div className="form-group mt-3">
+                        <label htmlFor="incidentSelect">Incident</label>
+                        <select className="form-control" id="incidentSelect" value={incidentId} onChange={(e) => setIncidentId(e.target.value)} required>
+                            <option value="">-- Sélectionnez un incident --</option>
+                            {incidents.map(incident => (
+                                <option key={incident.iD_Incident} value={incident.iD_Incident}>
+                                    {incident.rapport_Incident}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
+
                     <div className="text-center mt-4">
                         <button type="submit" className="btn btn-primary">Créer le Ticket</button>
                     </div>

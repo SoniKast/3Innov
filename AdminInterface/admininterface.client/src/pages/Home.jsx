@@ -52,7 +52,7 @@ const Home = () => {
                 <StatCard value={activeTickets.length} label="Tickets actifs" color="warning" linkTo="/tickets" />
                 <StatCard value={ongoingTickets.length} label="Tickets en cours" color="info" linkTo="/tickets" />
                 <StatCard value={closedTickets.length} label="Tickets clôturés" color="success" linkTo="/tickets" />
-                <StatCard value={incidents.length} label="Nombre d'incidents" color="danger" />
+                <StatCard value={incidents.length} label="Nombre d'incidents" color="danger" linkTo="/incidents" />
                 <StatCard value={utilisateurs.length} label="Utilisateurs enregistrés" color="dark" linkTo="/utilisateurs" />
             </div>
         </div>
