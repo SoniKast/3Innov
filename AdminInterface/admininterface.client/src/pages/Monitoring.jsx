@@ -1,4 +1,4 @@
-﻿import { React, useEffect, useState } from 'react';
+import { React, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 function Monitoring() {
     // State to store ticket data
@@ -67,9 +67,18 @@ function Monitoring() {
                                 <td>{equipement.adresse_IP}</td>
                                 <td>{equipement.groupe.nom_GroupeM}</td>
                                 <td>
-                                    <button className="btn btn-primary" onClick={() => navigate(`/monitoring/${equipement.iD_Equipement}/ping`, { state: { ip: equipement.adresse_IP } })}>
-                                        Suivi
-                                    </button>
+                                    <div className="text-center">
+                                        <button className="btn btn-primary" onClick={() => navigate(`/monitoring/${equipement.iD_Equipement}/ping`, { state: { ip: equipement.adresse_IP } })}>
+                                            Suivi
+                                        </button>
+                                        <br>
+                                        </br>
+                                        <br>
+                                        </br>
+                                        <button className="btn btn-primary" onClick={() => navigate(`/monitoring/${equipement.iD_Equipement}/edit`)}>
+                                            Modification
+                                        </button>
+                                    </div>
                                 </td>
                             </tr>
                         ))

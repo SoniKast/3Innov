@@ -5,6 +5,7 @@ const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    const [rememberMe, setRememberMe] = useState(false);
     const navigate = useNavigate();
 
     const handleLogin = async (e) => {
@@ -31,7 +32,11 @@ const Login = () => {
                 return;
             }
 
-            localStorage.setItem("token", data.token);
+            if (rememberMe) {
+                localStorage.setItem("token", data.token); // persiste même après fermeture du navigateur
+            } else {
+                sessionStorage.setItem("token", data.token); // disparaît après fermeture
+            }
             navigate("/");
             window.location.reload(); // Rafraichir la page d'accueil pour afficher le texte en haut
         } catch (error) {
@@ -55,8 +60,10 @@ const Login = () => {
                     <input type="password" className="form-control" id="idPassword" placeholder="Mot de passe" onChange={(e) => setPassword(e.target.value)} required></input>
                 </div>
                 <div className="form-group form-check">
-                    <input type="checkbox" className="form-check-input" id="remember"></input>
+                    <input type="checkbox" className="form-check-input" id="remember" checked={rememberMe} onChange={(e) => setRememberMe(e.target.checked)}></input>
                     <label className="form-check-label" for="remember">Se souvenir de moi</label>
+                    <br></br>
+                    <small class="text-muted">La session durera une heure si vous ne cochez pas cette case.</small>
                 </div>
                 {error && <p style={{ color: "red" }}>{error}</p>}
                 <center><button type="submit" className="btn btn-danger">Connexion</button></center>

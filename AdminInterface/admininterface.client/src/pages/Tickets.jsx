@@ -1,4 +1,5 @@
 ﻿import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function Tickets() {
     // State to store ticket data
@@ -6,6 +7,7 @@ function Tickets() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [filter, setFilter] = useState("Tous");
+    const navigate = useNavigate();
 
     // Fetch tickets from the API
     useEffect(() => {
@@ -64,6 +66,7 @@ function Tickets() {
                         <th scope="col">Description</th>
                         <th scope="col">Statut</th>
                         <th scope="col">Utilisateur</th>
+                        <th scope="col">Intervention</th>
                     </tr>
                 </thead>
                 <tbody className="table-group-divider">
@@ -75,6 +78,11 @@ function Tickets() {
                                 <td>{ticket.description_Ticket}</td>
                                 <td>{ticket.etat_Ticket}</td>
                                 <td>{ticket.utilisateurName}</td>
+                                <td>
+                                    <button className="btn btn-primary" onClick={() => navigate(`/tickets/${ticket.iD_Ticket}/edit`)}>
+                                        Modification
+                                    </button>
+                                </td>
                             </tr>
                         ))
                     ) : (

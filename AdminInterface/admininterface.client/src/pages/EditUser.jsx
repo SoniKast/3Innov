@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 function EditUser() {
-    const { id } = useParams(); // rÈcupËre l'ID depuis l'URL
+    const { id } = useParams(); // r√©cup√®re l'ID depuis l'URL
     const navigate = useNavigate();
 
     const [nom, setNom] = useState('');
@@ -25,7 +25,7 @@ function EditUser() {
                     setMotDePasse(data.mot_de_pass);
                     setType(data.type);
                 })
-                .catch(() => setError("Impossible de charger les donnÈes de l'utilisateur."));
+                .catch(() => setError("Impossible de charger les donn√©es de l'utilisateur."));
         }
     }, [id]);
 
@@ -58,7 +58,7 @@ function EditUser() {
                 throw new Error('Erreur lors de la modification');
             }
 
-            alert("Utilisateur modifiÈ avec succËs !");
+            alert("Utilisateur modifi√© avec succ√®s !");
             <Navigate to='/utilisateurs' />;
         } catch {
             setError("Erreur lors de la modification de l'utilisateur.");
@@ -77,7 +77,7 @@ function EditUser() {
                     </div>
 
                     <div className="form-group mt-3">
-                        <label htmlFor="userFirstName">PrÈnom</label>
+                        <label htmlFor="userFirstName">Pr√©nom</label>
                         <input type="text" className="form-control" id="userFirstName" value={prenom} onChange={(e) => setPrenom(e.target.value)} required />
                     </div>
 
@@ -94,7 +94,7 @@ function EditUser() {
                     <div className="form-group mt-3">
                         <label htmlFor="userType">Type</label>
                         <select className="form-control" id="userType" value={type} onChange={(e) => setType(e.target.value)} required >
-                            <option value="">-- SÈlectionnez le type --</option>
+                            <option value="">-- S√©lectionnez le type --</option>
                             <option value="Client">Client</option>
                             <option value="Admin">Administrateur</option>
                         </select>

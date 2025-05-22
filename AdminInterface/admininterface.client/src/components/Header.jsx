@@ -9,7 +9,7 @@ const Header = () => {
     const [filteredPages, setFilteredPages] = useState([]);
 
     useEffect(() => {
-        const token = localStorage.getItem("token");
+        const token = localStorage.getItem("token") || sessionStorage.getItem("token");
         if (token) {
             try {
                 const base64Url = token.split('.')[1];

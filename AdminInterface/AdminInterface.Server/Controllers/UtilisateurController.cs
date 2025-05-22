@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Org.BouncyCastle.Crypto.Generators;
+using BCrypt.Net;
 
 namespace AdminInterface.Server.Controllers
 {
@@ -93,7 +94,7 @@ namespace AdminInterface.Server.Controllers
             utilisateur.Prenom = dto.Prenom;
             utilisateur.Email = dto.Email;
             utilisateur.Type = dto.Type;
-            utilisateur.Mot_de_pass = dto.Mot_de_pass;
+            utilisateur.Mot_de_pass = BCrypt.Net.BCrypt.HashPassword(dto.Mot_de_pass);
 
             await _context.SaveChangesAsync();
             return NoContent();

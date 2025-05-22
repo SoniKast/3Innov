@@ -7,7 +7,7 @@ namespace TicketInterface
 {
     public partial class Inscription : Form
     {
-        private string connectionString = "Server=localhost;Database=innovationprojet2025;Uid=root;Pwd=;";
+        private string connectionString = "Server=localhost;Database=innovationprojet2025;Uid=root;Pwd=root;";
         private Form1 formConnexion; // Référence au formulaire de connexion
 
         // Constructeur avec une instance de Form1

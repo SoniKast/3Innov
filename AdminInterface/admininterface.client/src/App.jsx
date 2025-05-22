@@ -7,6 +7,8 @@ import PageRoutes from './components/PageRoutes';
 import Ping from './components/Ping';
 import EditUser from './pages/EditUser';
 import Login from './pages/Login';
+import EditEquipement from './pages/EditEquipment';
+import EditTicket from './pages/EditTicket';
 import LoadingSpinner from './components/LoadingSpinner';
 
 const App = () => {
@@ -43,9 +45,19 @@ const App = () => {
                                 <Ping />
                             </ProtectedRoute>
                         } />
+                        <Route path="/monitoring/:id/edit" element={
+                            <ProtectedRoute>
+                                <EditEquipement />
+                            </ProtectedRoute>
+                        } />
                         <Route path='/utilisateurs/:id/edit' element={
                             <ProtectedRoute>
                                 <EditUser />
+                            </ProtectedRoute>
+                        } />
+                        <Route path='/tickets/:id/edit' element={
+                            <ProtectedRoute>
+                                <EditTicket />
                             </ProtectedRoute>
                         } />
                         <Route path="/login" element={<Login />} />

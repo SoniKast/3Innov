@@ -35,7 +35,6 @@ const Sidebar = () => {
                             { label: "+ Enregistrer un équipement", path: "/register-equipment" },
                             { label: "+ Gérer utilisateurs", path: "/utilisateurs" },
                             { label: "+ Créer un utilisateur", path: "/create-user" },
-                            { label: "+ Statistiques", path: "/stats" },
                         ]}
                     />
                 </li>

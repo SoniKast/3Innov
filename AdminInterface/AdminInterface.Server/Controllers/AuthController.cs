@@ -7,9 +7,8 @@ using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 using AdminInterface.Server.Models;
 using AdminInterface.Server;
-using Org.BouncyCastle.Crypto.Generators;
 using System.ComponentModel.DataAnnotations;
-
+using BCrypt.Net;
 
 [Route("api/auth")]
 [ApiController]
@@ -27,20 +26,19 @@ public class AuthController : ControllerBase
     [HttpPost("login")]
     public async Task<IActionResult> Login([FromBody] LoginRequest request)
     {
-        // Vérifie si l'utilisateur existe en base
         var user = await _context.Utilisateur.FirstOrDefaultAsync(u => u.Email == request.Email);
 
-        // Vérification directe du mot de passe (PAS SÉCURISÉ, uniquement pour test)
-        if (user == null || user.Mot_de_pass != request.MotDePasse)
+        if (user == null || !BCrypt.Net.BCrypt.Verify(request.MotDePasse, user.Mot_de_pass))
         {
             return Unauthorized("Email ou mot de passe invalide");
         }
 
         var token = GenerateJwtToken(user);
+
         return Ok(new
         {
             token,
-            typeUtilisateur = user.Type // Assurez-vous que cette colonne existe dans la DB });
+            typeUtilisateur = user.Type
         });
     }
 
@@ -71,6 +69,7 @@ public class LoginRequest
 {
     [Required]
     public string Email { get; set; }
+
     [Required]
     public string MotDePasse { get; set; }
 }

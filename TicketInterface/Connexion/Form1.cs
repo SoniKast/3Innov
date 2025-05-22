@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
+using BCrypt.Net;
 
 namespace TicketInterface
 {
     public partial class Form1 : Form
     {
         // Chaîne de connexion à la base de données
-        private string connectionString = "Server=localhost;Database=innovationprojet2025;Uid=root;Pwd=;";
+        private string connectionString = "Server=localhost;Database=innovationprojet2025;Uid=root;Pwd=root;";
 
         public Form1()
         {
@@ -62,27 +63,34 @@ namespace TicketInterface
                     conn.Open();
 
                     // Requête SQL pour vérifier les identifiants
-                    string query = "SELECT * FROM utilisateur WHERE Email = @Email AND Mot_de_pass = @Password";
+                    string query = "SELECT * FROM utilisateur WHERE Email = @Email LIMIT 1";
                     using (MySqlCommand cmd = new MySqlCommand(query, conn))
                     {
                         cmd.Parameters.AddWithValue("@Email", email);
-                        cmd.Parameters.AddWithValue("@Password", password);
 
                         using (MySqlDataReader reader = cmd.ExecuteReader())
                         {
                             if (reader.Read())
                             {
-                                // Stocker les informations dans la session
-                                SessionManager.UserID = Convert.ToInt32($"{reader["ID_Utilisateur"]}");
-                                SessionManager.UserName = $"{reader["prenom"]} {reader["nom"]}";
-                                SessionManager.UserEmail = email;
+                                string hashedPassword = reader["Mot_de_pass"].ToString();
 
-                                MessageBox.Show($"Bienvenue, {SessionManager.UserName} !");
+                                // Vérifie le mot de passe fourni avec le hash
+                                if (BCrypt.Net.BCrypt.Verify(password, hashedPassword))
+                                {
+                                    SessionManager.UserID = Convert.ToInt32(reader["ID_Utilisateur"]);
+                                    SessionManager.UserName = $"{reader["prenom"]} {reader["nom"]}";
+                                    SessionManager.UserEmail = email;
 
-                                // Ouvrir l'interface principale et masquer le formulaire de connexion
-                                InterfacePrincipale mainForm = new InterfacePrincipale();
-                                mainForm.Show();
-                                this.Hide();
+                                    MessageBox.Show($"Bienvenue, {SessionManager.UserName} !");
+
+                                    InterfacePrincipale mainForm = new InterfacePrincipale();
+                                    mainForm.Show();
+                                    this.Hide();
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Mot de passe incorrect.");
+                                }
                             }
                             else
                             {
