@@ -117,7 +117,7 @@ function RegisterEquipment() {
                     </div>
 
                     <div className="text-center mt-4">
-                        <button type="submit" className="btn btn-primary">Enregistrer</button>
+                        <button type="submit" className="btn btn-danger">Enregistrer</button>
                     </div>
                 </form>
             </div>

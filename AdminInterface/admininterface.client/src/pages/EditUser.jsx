@@ -101,7 +101,7 @@ function EditUser() {
                     </div>
 
                     <div className="text-center mt-4">
-                        <button type="submit" className="btn btn-primary">Modifier l'utilisateur</button>
+                        <button type="submit" className="btn btn-success">Modifier l'utilisateur</button>
                     </div>
                 </form>
             </div>

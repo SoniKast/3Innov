@@ -81,7 +81,7 @@ function CreateUser() {
                     </div>
 
                     <div className="text-center mt-4">
-                        <button type="submit" className="btn btn-primary">Créer l'utilisateur</button>
+                        <button type="submit" className="btn btn-danger">Créer l'utilisateur</button>
                     </div>
                 </form>
             </div>

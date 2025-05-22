@@ -130,7 +130,7 @@ function CreateTicket() {
                     </div>
 
                     <div className="text-center mt-4">
-                        <button type="submit" className="btn btn-primary">Créer le Ticket</button>
+                        <button type="submit" className="btn btn-danger">Créer le Ticket</button>
                     </div>
                 </form>
             </div>

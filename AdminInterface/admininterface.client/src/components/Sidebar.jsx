@@ -7,7 +7,7 @@ const Sidebar = () => {
     const navigate = useNavigate();
 
     const handleLogout = () => {
-        localStorage.removeItem("token"); // Remove the token from local storage
+        localStorage.removeItem("token") || sessionStorage.removeItem("token"); // Remove the token from local storage
         window.location.reload(); // Refresh the page to reset authentication state
         navigate("/login"); // Redirect to the login page after logout
     };

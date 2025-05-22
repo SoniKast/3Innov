@@ -35,6 +35,10 @@
     border-radius: 12px;
 }
 
+body{
+    height: 100vh;
+    background-color: #C5C2C2 !important;
+}
 
 .login-form {
     margin-inline: auto;

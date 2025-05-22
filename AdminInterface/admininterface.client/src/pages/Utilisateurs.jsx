@@ -74,7 +74,7 @@ function Utilisateurs() {
                                 </td>
                                 <td>{utilisateur.type}</td>
                                 <td>
-                                    <button className="btn btn-primary" onClick={() => navigate(`/utilisateurs/${utilisateur.iD_Utilisateur}/edit`, { state: { id: utilisateur.iD_Utilisateur } })}>
+                                    <button className="btn btn-danger" onClick={() => navigate(`/utilisateurs/${utilisateur.iD_Utilisateur}/edit`, { state: { id: utilisateur.iD_Utilisateur } })}>
                                         Modifier
                                     </button>
                                 </td>
@@ -89,7 +89,7 @@ function Utilisateurs() {
                     )}
                 </tbody>
             </table>
-            <center><button className="btn btn-primary" onClick={() => navigate(`/create-user/`) }>Créer un utilisateur</button></center>
+            <center><button className="btn btn-danger" onClick={() => navigate(`/create-user/`) }>Créer un utilisateur</button></center>
         </div>
     );
 }

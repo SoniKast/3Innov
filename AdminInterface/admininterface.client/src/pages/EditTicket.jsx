@@ -134,7 +134,7 @@ function EditTicket() {
                     </div>
 
                     <div className="text-center mt-4">
-                        <button type="submit" className="btn btn-primary">Mettre à jour le Ticket</button>
+                        <button type="submit" className="btn btn-success">Mettre à jour le Ticket</button>
                     </div>
                 </form>
             </div>

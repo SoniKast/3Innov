@@ -79,7 +79,7 @@ function Tickets() {
                                 <td>{ticket.etat_Ticket}</td>
                                 <td>{ticket.utilisateurName}</td>
                                 <td>
-                                    <button className="btn btn-primary" onClick={() => navigate(`/tickets/${ticket.iD_Ticket}/edit`)}>
+                                    <button className="btn btn-danger" onClick={() => navigate(`/tickets/${ticket.iD_Ticket}/edit`)}>
                                         Modification
                                     </button>
                                 </td>

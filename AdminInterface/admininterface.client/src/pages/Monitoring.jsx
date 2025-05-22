@@ -68,14 +68,14 @@ function Monitoring() {
                                 <td>{equipement.groupe.nom_GroupeM}</td>
                                 <td>
                                     <div className="text-center">
-                                        <button className="btn btn-primary" onClick={() => navigate(`/monitoring/${equipement.iD_Equipement}/ping`, { state: { ip: equipement.adresse_IP } })}>
+                                        <button className="btn btn-danger" onClick={() => navigate(`/monitoring/${equipement.iD_Equipement}/ping`, { state: { ip: equipement.adresse_IP } })}>
                                             Suivi
                                         </button>
                                         <br>
                                         </br>
                                         <br>
                                         </br>
-                                        <button className="btn btn-primary" onClick={() => navigate(`/monitoring/${equipement.iD_Equipement}/edit`)}>
+                                        <button className="btn btn-danger" onClick={() => navigate(`/monitoring/${equipement.iD_Equipement}/edit`)}>
                                             Modification
                                         </button>
                                     </div>
@@ -91,7 +91,7 @@ function Monitoring() {
                     )}
                 </tbody>
             </table>
-            <center><button className="btn btn-primary" onClick={() => navigate(`/register-equipment/`)}>Enregistrer un équipement</button></center>
+            <center><button className="btn btn-danger" onClick={() => navigate(`/register-equipment/`)}>Enregistrer un équipement</button></center>
         </div>
     );
 }
