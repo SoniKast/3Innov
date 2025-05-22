@@ -155,7 +155,8 @@ CREATE TABLE `utilisateur` (
 
 LOCK TABLES `utilisateur` WRITE;
 /*!40000 ALTER TABLE `utilisateur` DISABLE KEYS */;
-INSERT INTO `utilisateur` VALUES (1,'DIAKITE','Balla','sonikast@hotmail.com','mdp','Admin'),(2,'diakate','balle','ballamoussa57@gmail.com','mdp','Client');
+INSERT INTO `utilisateur` VALUES (1,'DIAKITE','Balla','sonikast@hotmail.com','$2a$11$czEAuRD5DNedmJIgbK4cfOCJMpNrUrwNHQVcLtfKVqwjZzqwfW3Ey','Admin'),(2,'diakate','balle','ballamoussa57@gmail.com','$2a$11$p/Kj8rnnL.3UzgsDSN/1ZeIUZVKQSvOOcKruJYMBe23Tv.5.Qqkuu','Client'),
+(3,'TERIEUR','Alex','alex.terieur@gmail.com','$2a$11$FbY8HjMEL7INvw6eXVAvlOwH670WN8v9xQjLTNU52HMRzY7wVKF1G','Admin');
 /*!40000 ALTER TABLE `utilisateur` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

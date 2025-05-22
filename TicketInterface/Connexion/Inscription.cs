@@ -42,13 +42,14 @@ namespace TicketInterface
                 {
                     conn.Open();
 
-                    string query = "INSERT INTO utilisateur (nom, prenom, Email, Mot_de_pass) VALUES (@Nom, @Prenom, @Email, @MotDePasse)";
+                    string query = "INSERT INTO utilisateur (nom, prenom, Email, Mot_de_pass, Type) VALUES (@Nom, @Prenom, @Email, @MotDePasse, @Type)";
                     using (MySqlCommand cmd = new MySqlCommand(query, conn))
                     {
                         cmd.Parameters.AddWithValue("@Nom", nom);
                         cmd.Parameters.AddWithValue("@Prenom", prenom);
                         cmd.Parameters.AddWithValue("@Email", email);
                         cmd.Parameters.AddWithValue("@MotDePasse", motDePasse);
+                        cmd.Parameters.AddWithValue("@Type", "Client"); // Type par défaut
 
                         int rowsAffected = cmd.ExecuteNonQuery();
 
