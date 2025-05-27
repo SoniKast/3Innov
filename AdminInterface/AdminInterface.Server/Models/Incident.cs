@@ -11,6 +11,6 @@ namespace AdminInterface.Server.Models
         public int ID_Equipement { get; set; }
         [Required]
         public string Rapport_Incident { get; set; }
-        public Equipement Equipement { get; set; }
+        public Equipement? Equipement { get; set; }
     }
 }

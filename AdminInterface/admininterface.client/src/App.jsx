@@ -9,6 +9,7 @@ import EditUser from './pages/EditUser';
 import Login from './pages/Login';
 import EditEquipement from './pages/EditEquipment';
 import EditTicket from './pages/EditTicket';
+import EditIncident from './pages/EditIncident';
 import LoadingSpinner from './components/LoadingSpinner';
 
 const App = () => {
@@ -58,6 +59,11 @@ const App = () => {
                         <Route path='/tickets/:id/edit' element={
                             <ProtectedRoute>
                                 <EditTicket />
+                            </ProtectedRoute>
+                        } />
+                        <Route path='/incidents/:id/edit' element={
+                            <ProtectedRoute>
+                                <EditIncident />
                             </ProtectedRoute>
                         } />
                         <Route path="/login" element={<Login />} />

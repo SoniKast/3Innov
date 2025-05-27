@@ -65,6 +65,7 @@ function Tickets() {
                         <th scope="col">Titre</th>
                         <th scope="col">Description</th>
                         <th scope="col">Statut</th>
+                        <th scope="col">Type</th>
                         <th scope="col">Utilisateur</th>
                         <th scope="col">Intervention</th>
                     </tr>
@@ -77,6 +78,7 @@ function Tickets() {
                                 <td>{ticket.nom_Ticket}</td>
                                 <td>{ticket.description_Ticket}</td>
                                 <td>{ticket.etat_Ticket}</td>
+                                <td>{ticket.type_de_tickets}</td>
                                 <td>{ticket.utilisateurName}</td>
                                 <td>
                                     <button className="btn btn-danger" onClick={() => navigate(`/tickets/${ticket.iD_Ticket}/edit`)}>

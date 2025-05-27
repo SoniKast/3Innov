@@ -2,6 +2,7 @@
 import { useNavigate } from 'react-router-dom';
 
 function CreateTicket() {
+    const navigate = useNavigate();
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [type, setType] = useState('bug');
@@ -74,7 +75,7 @@ function CreateTicket() {
             setIncidentId('');
             setError('');
             alert("Ticket créé avec succès !");
-            <Navigate to='/tickets' />;
+            navigate('/tickets');
         } catch {
             setError("Erreur lors de la création du ticket.");
         }

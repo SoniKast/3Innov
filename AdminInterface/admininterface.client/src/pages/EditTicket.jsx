@@ -7,7 +7,8 @@ function EditTicket() {
 
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
-    const [type, setType] = useState('bug');
+    const [etat, setEtat] = useState('');
+    const [type, setType] = useState('');
     const [utilisateurId, setUtilisateurId] = useState('');
     const [incidentId, setIncidentId] = useState('');
     const [error, setError] = useState('');
@@ -24,6 +25,7 @@ function EditTicket() {
 
                 setTitle(ticketData.nom_Ticket);
                 setDescription(ticketData.description_Ticket);
+                setEtat(ticketData.etat_Ticket);
                 setType(ticketData.type_de_tickets);
                 setUtilisateurId(ticketData.id_Utilisateur);
                 setIncidentId(ticketData.id_Incident);
@@ -63,7 +65,7 @@ function EditTicket() {
             id_Ticket: parseInt(id),
             nom_Ticket: title,
             description_Ticket: description,
-            etat_Ticket: "Ouvert",
+            etat_Ticket: etat,
             type_de_tickets: type,
             id_Utilisateur: parseInt(utilisateurId),
             id_Incident: parseInt(incidentId),
@@ -98,6 +100,15 @@ function EditTicket() {
                     <div className="form-group mt-3">
                         <label htmlFor="ticketDescription">Description</label>
                         <textarea className="form-control" id="ticketDescription" rows="4" value={description} onChange={(e) => setDescription(e.target.value)} required />
+                    </div>
+
+                    <div className="form-group mt-3">
+                        <label htmlFor="ticketEtat">État</label>
+                        <select className="form-control" id="ticketEtat" value={etat} onChange={(e) => setEtat(e.target.value)}>
+                            <option value="Ouvert">Ouvert</option>
+                            <option value="En cours">En cours</option>
+                            <option value="Fermé">Fermé</option>
+                        </select>
                     </div>
 
                     <div className="form-group mt-3">

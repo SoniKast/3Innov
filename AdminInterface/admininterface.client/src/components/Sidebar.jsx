@@ -23,7 +23,8 @@ const Sidebar = () => {
                         title="Assistance"
                         links={[
                             { label: "+ Tickets", path: "/tickets" },
-                            { label: "+ Monitoring", path: "/monitoring" }
+                            { label: "+ Monitoring", path: "/monitoring" },
+                            { label: "+ Incidents", path: "/incidents" }
                         ]}
                     />
                 </li>

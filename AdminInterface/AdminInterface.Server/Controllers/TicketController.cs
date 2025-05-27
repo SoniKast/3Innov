@@ -31,6 +31,7 @@ namespace AdminInterface.Server.Controllers
                 Nom_Ticket = t.Nom_Ticket,
                 Description_Ticket = t.Description_Ticket,
                 Etat_Ticket = t.Etat_Ticket,
+				Type_de_tickets = t.Type_de_tickets,
                 UtilisateurName = $"{t.Utilisateur.Prenom} {t.Utilisateur.Nom}", // Assuming you want to show the full name
                 IncidentRapport = t.Incident?.Rapport_Incident // Handle the null case if Incident is null
             }).ToList();

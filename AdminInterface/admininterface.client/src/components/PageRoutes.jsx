@@ -5,6 +5,8 @@ import CreateTicket from '../pages/CreateTicket';
 import CreateUser from '../pages/CreateUser';
 import Utilisateurs from '../pages/Utilisateurs';
 import RegisterEquipment from '../pages/RegisterEquipment';
+import RegisterIncident from '../pages/RegisterIncident';
+import Incidents from '../pages/Incidents';
 
 const PageRoutes = [
     { path: '/', name: 'Accueil', component: Home },
@@ -14,7 +16,8 @@ const PageRoutes = [
     { path: '/register-equipment', name: 'Enregistrer un Équipement', component: RegisterEquipment },
     { path: '/create-user', name: 'Créer un utilisateur', component: CreateUser },
     { path: '/utilisateurs', name: 'Utilisateurs', component: Utilisateurs },
-    // { path: '/incidents', name: 'Incidents', component: Incidents },
+    { path: '/incidents', name: 'Incidents', component: Incidents },
+    { path: '/register-incident', name: 'Enregistrer un incident', component: RegisterIncident },
 ];
 
 export default PageRoutes;
