@@ -38,11 +38,11 @@ namespace TicketInterface
                             u.nom AS 'Utilisateur',
                             i.Rapport_Incident AS 'Incident'
                         FROM 
-                            Ticket t
+                            ticket t
                         LEFT JOIN 
-                            Utilisateur u ON t.ID_Utilisateur = u.ID_Utilisateur
+                            utilisateur u ON t.ID_Utilisateur = u.ID_Utilisateur
                         LEFT JOIN 
-                            Incident i ON t.ID_Incident = i.ID_Incident";
+                            incident i ON t.ID_Incident = i.ID_Incident";
 
                     using (MySqlCommand command = new MySqlCommand(query, connection))
                     {

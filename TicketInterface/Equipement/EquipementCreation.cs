@@ -25,7 +25,7 @@ namespace TicketInterface
                 using (MySqlConnection connection = new MySqlConnection(connectionString))
                 {
                     connection.Open();
-                    string query = "SELECT ID_Groupe, nom_groupem FROM Groupemonitoring";
+                    string query = "SELECT ID_Groupe, nom_groupem FROM groupemonitoring";
                     using (MySqlCommand command = new MySqlCommand(query, connection))
                     {
                         using (MySqlDataReader reader = command.ExecuteReader())
@@ -76,7 +76,7 @@ namespace TicketInterface
                     connection.Open();
 
                     string query = @"
-                        INSERT INTO Equipement (ID_Groupe, Type_equipement, Description_equipement, Marque, Modele, Commentaire)
+                        INSERT INTO equipement (ID_Groupe, Type_equipement, Description_equipement, Marque, Modele, Commentaire)
                         VALUES (@ID_Groupe, @Type_equipement, @Description_equipement, @Marque, @Modele, @Commentaire)";
 
                     using (MySqlCommand command = new MySqlCommand(query, connection))

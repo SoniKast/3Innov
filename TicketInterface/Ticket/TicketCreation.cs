@@ -77,7 +77,7 @@ namespace TicketInterface
 
                     // Préparer la commande d'insertion
                     string query = @"
-                    INSERT INTO Ticket (ID_Utilisateur, ID_Incident, Etat_Ticket, nom_ticket, Description_ticket, Type_de_tickets, Commentaire)
+                    INSERT INTO ticket (ID_Utilisateur, ID_Incident, Etat_Ticket, nom_ticket, Description_ticket, Type_de_tickets, Commentaire)
                     VALUES (@ID_Utilisateur, @ID_Incident, @Etat_Ticket, @nom_ticket, @Description_ticket, @Type_de_tickets, @Commentaire)";
 
                     using (MySqlCommand command = new MySqlCommand(query, connection))  // Changer SqlCommand par MySqlCommand

@@ -36,9 +36,9 @@ namespace TicketInterface
                             e.Description_equipement AS 'Description',
                             g.nom_groupem AS 'Groupe'
                         FROM 
-                            Equipement e
+                            equipement e
                         LEFT JOIN 
-                            Groupemonitoring g 
+                            groupemonitoring g 
                         ON 
                             e.ID_Groupe = g.ID_Groupe";
 
